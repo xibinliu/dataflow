@@ -64,5 +64,9 @@ Using "net/http" to run an http server in dataflow.go, which can respond "pong" 
 
 Implement handler for "/peoples" request, and return the PPeople slice in JSON array.
 
+### 15. Unit test
+
+Implement unit tests for the code written and show the code coverage.
+
 
 
