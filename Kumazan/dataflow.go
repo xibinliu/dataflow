@@ -88,5 +88,8 @@ func main() {
 	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "pong")
 	})
+	http.HandleFunc("/peoples", func(w http.ResponseWriter, r *http.Request) {
+		w.Write(bytes)
+	})
 	http.ListenAndServe(":8080", nil)
 }
