@@ -42,32 +42,33 @@ func main() {
 		return
 	}
 
-	alice := People{
-		firstname: "Alice",
-		lastname:  "White",
-		age:       10,
-		gender:    "Female",
+	Peoples := []People{
+		People{
+			firstname: "Alice",
+			lastname:  "White",
+			age:       10,
+			gender:    "Female",
+		},
+		People{
+			firstname: "Bob",
+			lastname:  "Bob",
+			age:       11,
+			gender:    "Male",
+		},
+		People{
+			firstname: "Charles",
+			lastname:  "Brown",
+			age:       12,
+			gender:    "Male",
+		},
+		People{
+			firstname: "Dianna",
+			lastname:  "Black",
+			age:       13,
+			gender:    "Female",
+		},
 	}
-	bob := People{
-		firstname: "Bob",
-		lastname:  "Bob",
-		age:       11,
-		gender:    "Male",
+	for _, people := range Peoples {
+		statement.Exec(people.firstname, people.lastname, people.age, people.gender)
 	}
-	charles := People{
-		firstname: "Charles",
-		lastname:  "Brown",
-		age:       12,
-		gender:    "Male",
-	}
-	dianna := People{
-		firstname: "Dianna",
-		lastname:  "Black",
-		age:       13,
-		gender:    "Female",
-	}
-	statement.Exec(alice.firstname, alice.lastname, alice.age, alice.gender)
-	statement.Exec(bob.firstname, bob.lastname, bob.age, bob.gender)
-	statement.Exec(charles.firstname, charles.lastname, charles.age, charles.gender)
-	statement.Exec(dianna.firstname, dianna.lastname, dianna.age, dianna.gender)
 }
