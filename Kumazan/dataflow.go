@@ -65,13 +65,13 @@ func main() {
 	for _, people := range Peoples {
 		statement.Exec(people.Firstname, people.Lastname, people.Age, people.Gender)
 	}
-	rows, _ := db.Query("SELECT firstname, lastname, age, gender FROM people")
-	for rows.Next() {
-		var firstname string
-		var lastname string
-		var age int
-		var gender string
-		rows.Scan(&firstname, &lastname, &age, &gender)
-		fmt.Println(firstname, lastname, age, gender)
+	Peoples = []people.People{}
+	err = db.Select(&Peoples, "SELECT firstname, lastname, age, gender FROM people")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	for _, people := range Peoples {
+		fmt.Println(people.Firstname, people.Lastname, people.Age, people.Gender)
 	}
 }
