@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
 	"github.com/xibinliu/dataflow/Kumazan/people"
@@ -71,7 +72,10 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	for _, people := range Peoples {
-		fmt.Println(people.Firstname, people.Lastname, people.Age, people.Gender)
+	bytes, err := json.Marshal(Peoples)
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
+	fmt.Println(string(bytes))
 }
