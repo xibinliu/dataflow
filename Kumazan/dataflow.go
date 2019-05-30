@@ -1,16 +1,16 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 
 	"github.com/xibinliu/dataflow/Kumazan/people"
 
+	"github.com/jmoiron/sqlx"
 	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
-	db, err := sql.Open("sqlite3", ":memory:")
+	db, err := sqlx.Open("sqlite3", ":memory:")
 	if err != nil {
 		fmt.Println(err)
 		return
