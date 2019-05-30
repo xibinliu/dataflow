@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 
 	"github.com/xibinliu/dataflow/Kumazan/people"
 
@@ -83,4 +84,9 @@ func main() {
 		return
 	}
 	fmt.Println(string(bytes))
+
+	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "pong")
+	})
+	http.ListenAndServe(":8080", nil)
 }
