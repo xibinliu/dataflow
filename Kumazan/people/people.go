@@ -8,3 +8,9 @@ type People struct {
 	Age       int    `json:"age"`
 	Gender    string `json:"gender"`
 }
+
+// PPeople is People with Name
+type PPeople struct {
+	People
+	Name string `json:"name"`
+}
