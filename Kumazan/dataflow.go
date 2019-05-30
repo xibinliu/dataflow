@@ -7,6 +7,14 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// People structure in db
+type People struct {
+	firstname string
+	lastname  string
+	age       int
+	gender    string
+}
+
 func main() {
 	db, err := sql.Open("sqlite3", ":memory:")
 	if err != nil {
@@ -34,8 +42,32 @@ func main() {
 		return
 	}
 
-	statement.Exec("Alice", "Wihte", 10, "Female")
-	statement.Exec("Bob", "Green", 11, "Male")
-	statement.Exec("Charles", "Brown", 12, "Male")
-	statement.Exec("Dianna", "Black", 13, "Female")
+	alice := People{
+		firstname: "Alice",
+		lastname:  "White",
+		age:       10,
+		gender:    "Female",
+	}
+	bob := People{
+		firstname: "Bob",
+		lastname:  "Bob",
+		age:       11,
+		gender:    "Male",
+	}
+	charles := People{
+		firstname: "Charles",
+		lastname:  "Brown",
+		age:       12,
+		gender:    "Male",
+	}
+	dianna := People{
+		firstname: "Dianna",
+		lastname:  "Black",
+		age:       13,
+		gender:    "Female",
+	}
+	statement.Exec(alice.firstname, alice.lastname, alice.age, alice.gender)
+	statement.Exec(bob.firstname, bob.lastname, bob.age, bob.gender)
+	statement.Exec(charles.firstname, charles.lastname, charles.age, charles.gender)
+	statement.Exec(dianna.firstname, dianna.lastname, dianna.age, dianna.gender)
 }
