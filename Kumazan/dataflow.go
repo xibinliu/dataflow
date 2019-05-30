@@ -2,13 +2,18 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
-	db, _ := sql.Open("sqlite3", ":memory:")
-	statement, _ := db.Prepare(`
+	db, err := sql.Open("sqlite3", ":memory:")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	statement, err := db.Prepare(`
 		CREATE TABLE IF NOT EXISTS people (
 			id INTEGER PRIMARY KEY,
 			firstname TEXT,
@@ -16,10 +21,18 @@ func main() {
 			age INTEGER,
 			gender TEXT CHECK( gender IN ('Male', 'Female') )
 		)`)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	statement.Exec()
-	statement, _ = db.Prepare(`
+	statement, err = db.Prepare(`
 		INSERT INTO people (firstname, lastname, age, gender)
 		VALUES (?, ?, ?, ?)`)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
 	statement.Exec("Alice", "Wihte", 10, "Female")
 	statement.Exec("Bob", "Green", 11, "Male")
