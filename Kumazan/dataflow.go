@@ -67,7 +67,7 @@ func main() {
 		statement.Exec(people.Firstname, people.Lastname, people.Age, people.Gender)
 	}
 	Peoples = []people.People{}
-	err = db.Select(&Peoples, "SELECT firstname, lastname, age, gender FROM people")
+	err = db.Select(&Peoples, "SELECT * FROM people")
 	if err != nil {
 		fmt.Println(err)
 		return
