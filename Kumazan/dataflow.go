@@ -4,16 +4,10 @@ import (
 	"database/sql"
 	"fmt"
 
+	"github.com/xibinliu/dataflow/Kumazan/people"
+
 	_ "github.com/mattn/go-sqlite3"
 )
-
-// People structure in db
-type People struct {
-	firstname string
-	lastname  string
-	age       int
-	gender    string
-}
 
 func main() {
 	db, err := sql.Open("sqlite3", ":memory:")
@@ -42,33 +36,33 @@ func main() {
 		return
 	}
 
-	Peoples := []People{
-		People{
-			firstname: "Alice",
-			lastname:  "White",
-			age:       10,
-			gender:    "Female",
+	Peoples := []people.People{
+		people.People{
+			Firstname: "Alice",
+			Lastname:  "White",
+			Age:       10,
+			Gender:    "Female",
 		},
-		People{
-			firstname: "Bob",
-			lastname:  "Bob",
-			age:       11,
-			gender:    "Male",
+		people.People{
+			Firstname: "Bob",
+			Lastname:  "Bob",
+			Age:       11,
+			Gender:    "Male",
 		},
-		People{
-			firstname: "Charles",
-			lastname:  "Brown",
-			age:       12,
-			gender:    "Male",
+		people.People{
+			Firstname: "Charles",
+			Lastname:  "Brown",
+			Age:       12,
+			Gender:    "Male",
 		},
-		People{
-			firstname: "Dianna",
-			lastname:  "Black",
-			age:       13,
-			gender:    "Female",
+		people.People{
+			Firstname: "Dianna",
+			Lastname:  "Black",
+			Age:       13,
+			Gender:    "Female",
 		},
 	}
 	for _, people := range Peoples {
-		statement.Exec(people.firstname, people.lastname, people.age, people.gender)
+		statement.Exec(people.Firstname, people.Lastname, people.Age, people.Gender)
 	}
 }
