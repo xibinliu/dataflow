@@ -14,3 +14,13 @@ type PPeople struct {
 	People
 	Name string `json:"name"`
 }
+
+// Presenter is an interface which can present
+type Presenter interface {
+	Present()
+}
+
+// Present combines firstname and lastname into name
+func (pp *PPeople) Present() {
+	pp.Name = pp.Firstname + " " + pp.Lastname
+}

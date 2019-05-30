@@ -46,7 +46,7 @@ func main() {
 		},
 		people.People{
 			Firstname: "Bob",
-			Lastname:  "Bob",
+			Lastname:  "Green",
 			Age:       11,
 			Gender:    "Male",
 		},
@@ -66,13 +66,18 @@ func main() {
 	for _, people := range Peoples {
 		statement.Exec(people.Firstname, people.Lastname, people.Age, people.Gender)
 	}
-	Peoples = []people.People{}
-	err = db.Select(&Peoples, "SELECT * FROM people")
+
+	PPeoples := []people.PPeople{}
+	err = db.Select(&PPeoples, "SELECT * FROM people")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	bytes, err := json.Marshal(Peoples)
+	for i := range PPeoples {
+		var pp people.Presenter = &PPeoples[i]
+		pp.Present()
+	}
+	bytes, err := json.Marshal(PPeoples)
 	if err != nil {
 		fmt.Println(err)
 		return
